@@ -84,7 +84,7 @@
             <v-btn small icon @click="del">
               <v-icon>delete</v-icon>
             </v-btn>
-            <users-edit-form :userAttr="editUser" @click="edit"/>
+            <users-edit-form :user="user" :userAttr="editUser" @click="edit"/>
 <!--            <v-btn small icon @click="edit">
               <v-icon>edit</v-icon>
             </v-btn>-->
@@ -114,7 +114,8 @@ import { mapActions } from 'vuex'
 import UsersEditForm from "./UsersEditForm.vue";
 
 export default {
-  components: {UsersEditForm},
+  components: { UsersEditForm },
+
   props: ['user', 'editUser'],
 
   methods: {

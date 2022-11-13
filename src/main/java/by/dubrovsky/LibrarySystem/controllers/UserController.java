@@ -50,7 +50,7 @@ public class UserController {
 
     @PutMapping("{id}")
     public User update(@PathVariable("id") User userFromDb, @RequestBody User userToUpdate) {
-        BeanUtils.copyProperties(userToUpdate, userFromDb, "id", "creationDate", "email", "sub", "picture", "locale");
+        BeanUtils.copyProperties(userToUpdate, userFromDb, "id", "creationDate", "sub", "picture");
 
         User updatedUser = userRepository.save(userFromDb);
 

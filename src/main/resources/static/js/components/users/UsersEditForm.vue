@@ -24,17 +24,17 @@
   import { mapActions } from "vuex";
 
   export default {
-    props: ['userAttr'],
+    props: ['user', 'userAttr'],
 
     data() {
       return {
-        firstName: '',
-        secondName: '',
-        age: '',
-        email: '',
-        phone: '',
-        locale: '',
-        id: ''
+        firstName: this.user.firstName,
+        secondName: this.user.secondName,
+        age: this.user.age,
+        email: this.user.email,
+        phone: this.user.phone,
+        locale: this.user.locale,
+        id: this.user.id
       }
     },
 
