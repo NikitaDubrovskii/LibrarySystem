@@ -23,7 +23,7 @@ public class BookController {
     @Autowired
     public BookController(BookRepository bookRepository, WsSender wsSender) {
         this.bookRepository = bookRepository;
-        this.wsSender = wsSender.getSender(ObjectType.BOOK, Views.IdTitleAuthor.class);
+        this.wsSender = wsSender.getSender(ObjectType.BOOK, Views.FullBook.class);
     }
 
     @GetMapping()

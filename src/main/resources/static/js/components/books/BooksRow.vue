@@ -42,9 +42,10 @@
             <v-btn small icon @click="del">
               <v-icon>delete</v-icon>
             </v-btn>
-            <v-btn small icon @click="edit">
+            <books-edit-form :book="book" :bookAttr="editBook" @click="edit"/>
+<!--            <v-btn small icon @click="edit" :book="book" :bookAttr="editBook">
               <v-icon>edit</v-icon>
-            </v-btn>
+            </v-btn>-->
           </div>
         </v-flex>
 
@@ -56,8 +57,10 @@
 
 <script>
 import { mapActions } from 'vuex'
+import BooksEditForm from "./BooksEditForm.vue";
 
 export default {
+  components: {BooksEditForm},
   props: ['book', 'editBook'],
 
   methods: {

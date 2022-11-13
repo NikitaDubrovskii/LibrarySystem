@@ -24,7 +24,7 @@ public class UserController {
     @Autowired
     public UserController(UserRepository userRepository, WsSender wsSender) {
         this.userRepository = userRepository;
-        this.wsSender = wsSender.getSender(ObjectType.USER, Views.IdFullNameAge.class);
+        this.wsSender = wsSender.getSender(ObjectType.USER, Views.FullUser.class);
     }
 
     @GetMapping()

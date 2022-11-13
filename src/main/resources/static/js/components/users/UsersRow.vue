@@ -71,7 +71,7 @@
 
         <v-flex xs8 md2>
           <div class="caption grey--text">Phone number</div>
-          <div>phone</div>
+          <div>{{ user.phone }}</div>
         </v-flex>
 
         <v-spacer></v-spacer>

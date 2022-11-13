@@ -1,9 +1,11 @@
 <template>
   <v-dialog max-width="600px">
-    <v-btn slot="activator">Add new book</v-btn>
+    <v-btn slot="activator" small icon>
+      <v-icon>edit</v-icon>
+    </v-btn>
     <v-card class="text-xs-center">
       <v-card-title>
-        <h2>Add new book</h2>
+        <h2>Edit book</h2>
       </v-card-title>
       <v-card-text>
         <v-text-field label="Title" outline placeholder="Write title" v-model="title" />
@@ -20,15 +22,15 @@
 import { mapActions } from 'vuex'
 
 export default {
-  props: ['bookAttr'],
+  props: ['book', 'bookAttr'],
 
   data() {
     return {
-      title: '',
-      author: '',
-      year: '',
-      pages: '',
-      id: ''
+      title: this.book.title,
+      author: this.book.author,
+      year: this.book.year,
+      pages: this.book.pages,
+      id: this.book.id
     }
   },
 
@@ -43,12 +45,12 @@ export default {
   },
 
   methods: {
-    ...mapActions(['addBookAction']),
+    ...mapActions(['updateBookAction']),
 
     save() {
       const book = {id: this.id, title: this.title, author: this.author, year: this.year, pages: this.pages}
 
-      this.addBookAction(book)
+      this.updateBookAction(book)
 
       this.title = ''
       this.author = ''
