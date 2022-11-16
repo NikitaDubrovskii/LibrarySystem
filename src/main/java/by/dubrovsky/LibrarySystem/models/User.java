@@ -54,12 +54,16 @@ public class User implements Serializable {
     @JsonView(Views.FullUser.class)
     private String locale;
 
+    @Column(name = "role")
+    @JsonView(Views.FullUser.class)
+    private String role;
+
     @Column(updatable = false, name = "creation_date")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonView(Views.FullUser.class)
     private LocalDateTime creationDate;
 
-    public User(String sub, String firstName, String secondName, Integer age, String picture, String email, Integer phone, String locale) {
+    public User(String sub, String firstName, String secondName, Integer age, String picture, String email, Integer phone, String role, String locale) {
         this.sub = sub;
         this.firstName = firstName;
         this.secondName = secondName;
@@ -67,6 +71,7 @@ public class User implements Serializable {
         this.picture = picture;
         this.email = email;
         this.phone = phone;
+        this.role = role;
         this.locale = locale;
     }
 }

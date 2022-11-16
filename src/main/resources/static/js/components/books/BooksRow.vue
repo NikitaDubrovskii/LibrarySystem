@@ -37,7 +37,7 @@
 
         <v-spacer/>
 
-        <v-flex xs12 sm12 md2>
+        <v-flex v-if="profile.role === 'ADMIN'" xs12 sm12 md2>
           <div class="right">
             <v-btn small icon @click="del">
               <v-icon>delete</v-icon>
@@ -56,11 +56,16 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 import BooksEditForm from "./BooksEditForm.vue";
 
 export default {
-  components: {BooksEditForm},
+  computed: {
+    ...mapState(['profile'])
+  },
+
+  components: { BooksEditForm },
+
   props: ['book', 'editBook'],
 
   methods: {

@@ -11,7 +11,7 @@
 
   <div>
     <h1 class="subheading grey--text">Books</h1>
-    <books-form class="right"/>
+    <books-form v-if="profile.role === 'ADMIN'" class="right"/>
 
     <v-container class="my-5">
       <books-row v-for="book in sortedBooks"
@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 import BooksRow from "components/books/BooksRow.vue"
 import BooksForm from "components/books/BooksForm.vue"
 
@@ -43,6 +43,7 @@ export default {
 
   computed: {
     ...mapGetters(['sortedBooks']),
+    ...mapState(['profile'])
   },
 
   methods: {
