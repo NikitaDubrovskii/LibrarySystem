@@ -1,13 +1,4 @@
 <template>
-  <!--    <v-layout align-start justify-start row fill-height>
-          <v-text-field label="First Name" outline placeholder="Write first name" v-model="firstName" class="mr-2"/>
-          <v-text-field label="Second Name" outline placeholder="Write second name" v-model="secondName" class="mr-2"/>
-          <v-text-field label="Age" outline placeholder="Write age" v-model="age" />
-          <v-btn @click="save">
-              Save
-          </v-btn>
-      </v-layout>-->
-
   <v-dialog max-width="600px">
     <v-btn slot="activator">Add new person</v-btn>
     <v-card class="text-xs-center">
@@ -61,6 +52,7 @@ export default {
       this.secondName = ''
       this.age = ''
       this.id = ''
+
     }
   }
 }

@@ -1,13 +1,5 @@
 <template>
-  <!--    <v-container>
-          <v-card color="green" dark>
-              <v-card-title primary-title>
-                  <i>({{ book.id }})</i> {{ book.title }} {{ book.author }}
-              </v-card-title>
-          </v-card>
-      </v-container>-->
-
-  <div>
+ <div>
     <v-card flat class="pa-3">
       <v-layout row wrap>
         <v-flex xs1 sm1 md1>

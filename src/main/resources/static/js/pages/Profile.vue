@@ -1,29 +1,4 @@
 <template>
-  <!--<v-container>
-      <v-layout justify-space-around>
-          <v-flex :xs6="!$vuetify.breakpoint.xsOnly">
-              <div class="title mb-3">
-                  User Profile
-              </div>
-              <v-layout row justify-space-between>
-                  <v-flex class="px-1">
-                      <v-img :src="profile.picture"></v-img>
-                  </v-flex>
-
-                  <v-flex class="px-1">
-                      <v-layout column>
-                          <v-flex>Имя: {{profile.firstName}} {{profile.secondName}}</v-flex>
-                          <v-flex>Возраст: {{profile.age}}</v-flex>
-                          <v-flex>Почта: {{profile.email}}</v-flex>
-                          <v-flex>Страна: {{profile.locale}}</v-flex>
-                          <v-flex>Дата создарния: {{profile.creationDate}}</v-flex>
-                      </v-layout>
-                  </v-flex>
-              </v-layout>
-          </v-flex>
-      </v-layout>
-  </v-container>-->
-
   <v-container class="my-5">
     <v-layout align-center justify-center row fill-height>
       <v-flex xs8 sm6 md4>

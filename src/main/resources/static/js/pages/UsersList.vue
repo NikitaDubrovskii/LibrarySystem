@@ -1,17 +1,4 @@
 <template>
-  <!--<v-container>
-      <v-flex xs6>
-          <users-form :userAttr="user" />
-      </v-flex>
-      <v-flex xs6>
-      <v-layout align-center justify-start column>
-              <users-row v-for="user in sortedUsers"
-                         :key="user.id"
-                         :user="user"
-                         :editUser="editUser" />
-          </v-layout>
-      </v-flex>
-  </v-container>-->
   <div>
     <h1 class="subheading grey--text">Users</h1>
     <users-form class="right"/>

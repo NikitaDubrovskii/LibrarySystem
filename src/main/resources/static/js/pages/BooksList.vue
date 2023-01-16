@@ -1,14 +1,4 @@
 <template>
-  <!--<v-container>
-      <v-flex xs6>
-          <v-layout align-start justify-start column fill-height>
-              <books-row v-for="book in sortedBooks"
-                         :key="book.id"
-                         :book="book" />
-          </v-layout>
-      </v-flex>
-  </v-container>-->
-
   <div>
     <h1 class="subheading grey--text">Books</h1>
     <books-form v-if="profile.role === 'ADMIN'" class="right"/>

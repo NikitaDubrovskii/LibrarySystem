@@ -1,4 +1,4 @@
-<template>
+ <template>
   <v-dialog max-width="600px">
     <v-btn slot="activator" small icon>
       <v-icon>edit</v-icon>
