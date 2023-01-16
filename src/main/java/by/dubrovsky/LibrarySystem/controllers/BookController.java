@@ -29,12 +29,14 @@ public class BookController {
     @GetMapping()
     @JsonView(Views.IdTitleAuthor.class)
     public List<Book> list() {
+
         return bookRepository.findAll();
     }
 
     @GetMapping("{id}")
     public Book getOne(@PathVariable("id") Book book) {
         return book;
+        //return bookRepository.findById(book.getId()).get();
     }
 
     @PostMapping()
@@ -63,4 +65,14 @@ public class BookController {
         wsSender.accept(EventType.REMOVE, book);
     }
 
+    @PatchMapping("/{id}/set-user")
+    public Book setUser(@PathVariable("id") Book bookFromDb, @RequestBody Book bookToUpdate) {
+        BeanUtils.copyProperties(bookToUpdate, bookFromDb, "id", "title", "author", "year", "pages");
+
+        Book updatedBook = bookRepository.save(bookFromDb);
+
+        wsSender.accept(EventType.UPDATE, updatedBook);
+
+        return updatedBook;
+    }
 }

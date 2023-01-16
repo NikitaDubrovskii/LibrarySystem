@@ -93,7 +93,12 @@
 
         <v-slide-y-transition>
           <v-card-text v-show="show">
-            I'm a thing. But, like most politicians, he promised more than he could deliver. You won't have time for sleeping, soldier, not with all the bed making you'll be doing. Then we'll go with that data file! Hey, you add a one and two zeros to that or we walk! You're going to do his laundry? I've got to find a way to escape.
+            <div v-if="user.books.length > 0">
+              <div v-for="book in user.books" :key="book.id">
+                <div>{{ book.title }} --- {{ book.author }}</div>
+              </div>
+            </div>
+            <div v-else>Книг нет</div>
           </v-card-text>
         </v-slide-y-transition>
 
@@ -110,7 +115,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions} from 'vuex'
 import UsersEditForm from "./UsersEditForm.vue";
 
 export default {

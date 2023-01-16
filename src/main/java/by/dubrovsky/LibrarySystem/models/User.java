@@ -1,12 +1,12 @@
 package by.dubrovsky.LibrarySystem.models;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonView;
+import com.fasterxml.jackson.annotation.*;
 import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "usr")
@@ -16,6 +16,8 @@ import java.time.LocalDateTime;
 @ToString(of = {"id", "firstName", "secondName"})
 @EqualsAndHashCode(of = {"id"})
 public class User implements Serializable {
+    //private static final long serialVersionUID = 3838819347520452335L;
+
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -62,6 +64,12 @@ public class User implements Serializable {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonView(Views.FullUser.class)
     private LocalDateTime creationDate;
+
+    @OneToMany(mappedBy = "userId", fetch = FetchType.EAGER)
+    @JsonView(Views.FullUser.class)
+    //@JsonManagedReference
+    @JsonIgnoreProperties("userId")
+    private List<Book> books;
 
     public User(String sub, String firstName, String secondName, Integer age, String picture, String email, Integer phone, String role, String locale) {
         this.sub = sub;

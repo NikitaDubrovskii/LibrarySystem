@@ -1,5 +1,6 @@
 package by.dubrovsky.LibrarySystem.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonView;
 import lombok.*;
 
@@ -14,6 +15,7 @@ import java.io.Serializable;
 @ToString(of = {"id", "title", "author"})
 @EqualsAndHashCode(of = {"id"})
 public class Book implements Serializable {
+
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,8 +38,10 @@ public class Book implements Serializable {
     @JsonView(Views.FullBook.class)
     private Integer pages;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "usr_id", referencedColumnName = "id")
+    //@JsonBackReference
+    @JsonIgnoreProperties("books")
     @JsonView(Views.FullBook.class)
     private User userId;
 

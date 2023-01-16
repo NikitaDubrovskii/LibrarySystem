@@ -23,7 +23,6 @@ export function disconnect() {
     if (stompClient !== null) {
         stompClient.disconnect()
     }
-    setConnected(false)
     console.log("Disconnected")
 }
 

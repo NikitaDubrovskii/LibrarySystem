@@ -4,6 +4,7 @@ import by.dubrovsky.LibrarySystem.dto.EventType;
 import by.dubrovsky.LibrarySystem.dto.ObjectType;
 import by.dubrovsky.LibrarySystem.models.User;
 import by.dubrovsky.LibrarySystem.models.Views;
+import by.dubrovsky.LibrarySystem.repositories.BookRepository;
 import by.dubrovsky.LibrarySystem.repositories.UserRepository;
 import by.dubrovsky.LibrarySystem.util.WsSender;
 import com.fasterxml.jackson.annotation.JsonView;
@@ -19,11 +20,13 @@ import java.util.function.BiConsumer;
 @RequestMapping("user")
 public class UserController {
     private final UserRepository userRepository;
+    private final BookRepository bookRepository;
     private final BiConsumer<EventType, User> wsSender;
 
     @Autowired
-    public UserController(UserRepository userRepository, WsSender wsSender) {
+    public UserController(UserRepository userRepository, BookRepository bookRepository, WsSender wsSender) {
         this.userRepository = userRepository;
+        this.bookRepository = bookRepository;
         this.wsSender = wsSender.getSender(ObjectType.USER, Views.FullUser.class);
     }
 
@@ -35,6 +38,8 @@ public class UserController {
 
     @GetMapping("{id}")
     public User getOne(@PathVariable("id") User user) {
+        //List<Book> books = bookRepository.findBooksByUserId(user);
+        //return userRepository.findById(user.getId()).get();
         return user;
     }
 
