@@ -1,71 +1,51 @@
 package by.dubrovsky.LibrarySystem.controllers;
 
-import by.dubrovsky.LibrarySystem.dto.EventType;
-import by.dubrovsky.LibrarySystem.dto.ObjectType;
 import by.dubrovsky.LibrarySystem.models.Book;
 import by.dubrovsky.LibrarySystem.models.Views;
-import by.dubrovsky.LibrarySystem.repositories.BookRepository;
-import by.dubrovsky.LibrarySystem.util.WsSender;
+import by.dubrovsky.LibrarySystem.services.BookService;
 import com.fasterxml.jackson.annotation.JsonView;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.function.BiConsumer;
 
 @RestController
 @RequestMapping("book")
 public class BookController {
-    private final BookRepository bookRepository;
-    private final BiConsumer<EventType, Book> wsSender;
+    private final BookService bookService;
 
     @Autowired
-    public BookController(BookRepository bookRepository, WsSender wsSender) {
-        this.bookRepository = bookRepository;
-        this.wsSender = wsSender.getSender(ObjectType.BOOK, Views.FullBook.class);
+    public BookController(BookService bookService) {
+        this.bookService = bookService;
     }
 
     @GetMapping()
     @JsonView(Views.IdTitleAuthor.class)
     public List<Book> list() {
-
-        return bookRepository.findAll();
+        return bookService.list();
     }
 
     @GetMapping("{id}")
     public Book getOne(@PathVariable("id") Book book) {
-        return book;
-        //return bookRepository.findById(book.getId()).get();
+        return bookService.getOne(book);
     }
 
     @PostMapping()
     public Book create(@RequestBody Book bookToAdd) {
-        Book updatedBook = bookRepository.save(bookToAdd);
-
-        wsSender.accept(EventType.CREATE, updatedBook);
-
-        return updatedBook;
+        return bookService.create(bookToAdd);
     }
 
     @PutMapping("{id}")
     public Book update(@PathVariable("id") Book bookFromDb, @RequestBody Book bookToUpdate) {
-        BeanUtils.copyProperties(bookToUpdate, bookFromDb, "id");
-
-        Book updatedBook = bookRepository.save(bookFromDb);
-
-        wsSender.accept(EventType.UPDATE, updatedBook);
-
-        return updatedBook;
+        return bookService.update(bookFromDb, bookToUpdate);
     }
 
     @DeleteMapping("{id}")
     public void delete(@PathVariable("id") Book book) {
-        bookRepository.delete(book);
-        wsSender.accept(EventType.REMOVE, book);
+        bookService.delete(book);
     }
 
-    @PatchMapping("/{id}/set-user")
+/*    @PatchMapping("/{id}/set-user")
     public Book setUser(@PathVariable("id") Book bookFromDb, @RequestBody Book bookToUpdate) {
         BeanUtils.copyProperties(bookToUpdate, bookFromDb, "id", "title", "author", "year", "pages");
 
@@ -74,5 +54,5 @@ public class BookController {
         wsSender.accept(EventType.UPDATE, updatedBook);
 
         return updatedBook;
-    }
+    }*/
 }
