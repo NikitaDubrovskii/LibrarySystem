@@ -2,7 +2,7 @@
  <div>
     <v-card flat class="pa-3">
       <v-layout row wrap>
-        <v-flex xs1 sm1 md1>
+        <v-flex xs0.5 sm0.5 md0.5>
           <div class="caption grey--text">Id</div>
           <div>{{ book.id }}</div>
         </v-flex>

@@ -1,6 +1,6 @@
  <template>
-  <v-dialog max-width="600px">
-    <v-btn slot="activator" small icon>
+  <v-dialog v-model="dialog" max-width="600px">
+    <v-btn slot="activator" @click="dialog = true" small icon>
       <v-icon>edit</v-icon>
     </v-btn>
     <v-card class="text-xs-center">
@@ -28,6 +28,7 @@
 
     data() {
       return {
+        dialog: false,
         firstName: this.user.firstName,
         secondName: this.user.secondName,
         age: this.user.age,
@@ -57,6 +58,8 @@
         const user = {id: this.id, firstName: this.firstName, secondName: this.secondName, age: this.age, email: this.email, phone: this.phone, locale: this.locale}
 
         this.updateUserAction(user)
+
+        this.dialog = false
 
         this.firstName = ''
         this.secondName = ''

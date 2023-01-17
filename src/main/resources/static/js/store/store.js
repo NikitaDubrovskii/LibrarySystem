@@ -15,7 +15,7 @@ export default new Vuex.Store({
     getters: {
         sortedUsers: state => (state.users || []).sort((a, b) => (a.id - b.id)),
 
-        sortedBooks: state => (state.books || []).sort((a, b) => (a.id - b.id))
+        sortedBooks: state => (state.books || []).sort((a, b) => (a.id - b.id)),
     },
 
     mutations: {

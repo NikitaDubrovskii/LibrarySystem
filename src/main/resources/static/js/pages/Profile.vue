@@ -19,10 +19,7 @@
           </v-card-text>
 
           <v-card-actions>
-            <v-btn flat color="grey">
-              <v-icon small left>edit</v-icon>
-              <span>Edit</span>
-            </v-btn>
+            <profile-edit-form :user="profile" :userAttr="editUser"/>
           </v-card-actions>
         </v-card>
       </v-flex>
@@ -32,11 +29,20 @@
 
 <script>
 import { mapState } from 'vuex'
+import ProfileEditForm from "../components/profile/ProfileEditForm.vue"
 
 export default {
+  components: {ProfileEditForm},
+
   computed: {
     ...mapState(['profile']),
   },
+
+  methods: {
+    editUser(user) {
+      this.profile = user
+    }
+  }
 }
 </script>
 

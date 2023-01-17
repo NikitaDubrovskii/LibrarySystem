@@ -1,6 +1,6 @@
 <template>
-  <v-dialog max-width="600px">
-    <v-btn slot="activator">Add new person</v-btn>
+  <v-dialog v-model="dialog" max-width="600px">
+    <v-btn slot="activator" @click="dialog = true">Add new person</v-btn>
     <v-card class="text-xs-center">
       <v-card-title>
         <h2>Add new person</h2>
@@ -23,6 +23,7 @@ export default {
 
   data() {
     return {
+      dialog: false,
       firstName: '',
       secondName: '',
       age: '',
@@ -47,12 +48,12 @@ export default {
 
       this.addUserAction(user)
 
+      this.dialog = false
 
       this.firstName = ''
       this.secondName = ''
       this.age = ''
       this.id = ''
-
     }
   }
 }

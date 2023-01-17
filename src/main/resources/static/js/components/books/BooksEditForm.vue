@@ -1,6 +1,6 @@
 <template>
-  <v-dialog max-width="600px">
-    <v-btn slot="activator" small icon>
+  <v-dialog v-model="dialog" max-width="600px">
+    <v-btn slot="activator" @click="dialog = true" small icon>
       <v-icon>edit</v-icon>
     </v-btn>
     <v-card class="text-xs-center">
@@ -26,6 +26,7 @@ export default {
 
   data() {
     return {
+      dialog: false,
       title: this.book.title,
       author: this.book.author,
       year: this.book.year,
@@ -51,6 +52,8 @@ export default {
       const book = {id: this.id, title: this.title, author: this.author, year: this.year, pages: this.pages}
 
       this.updateBookAction(book)
+
+      this.dialog = false
 
       this.title = ''
       this.author = ''
